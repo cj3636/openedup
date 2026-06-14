@@ -1,53 +1,44 @@
-# OpenUp
-___
-[install](#installation) | [unistall](#uninstall) | [keybinds](#keybinds)
+# OpenedUp v2
 
-### About
-> this is simple tui for opening project, config, etc files.
+OpenedUp is a keyboard-first TUI filesystem control center for people who live in terminals, SSH sessions, and tmux panes. It stays intentionally small: it helps you navigate files, directories, favorites, history, commands, and optional system services, then launches the existing tools you already use.
 
-### How to use
+## Highlights
 
-```mermaid
-flowchart TD;
-        O[type openup in terminal]--> A[in app]
-        A--> B[Press `A` to add new item]
-        A--> C[Press `D` to delete item]
-        A--> D[Press `E` to change editor]
-        A--> F[Press `C` to change item]
-        A--> E[Press `enter` to open file]
-```
-<p align="center">
-<img src="https://raw.githubusercontent.com/Horryportier/openup/main/v1/openupvid.gif" width=500 />
-</p>
+- Bubble Tea/Bubbles/Lipgloss TUI with header, breadcrumbs, global search, list, optional preview, and status footer.
+- Unified `Entry` model for groups, files, folder browsing/viewing, history, favorites, commands, and search results.
+- Lazy directory loading; no recursive disk scans at startup.
+- Editor detection using `$EDITOR`, VS Code, Nano, Vim, then Vi.
+- Skate-path-compatible storage rooted at `~/.local/share/charm/kv/openedup` for config-adjacent app data, favorites, and history.
+- Optional zoxide and systemd providers when those tools are installed.
+- Config file at `~/.config/openedup/config.json` with sensible defaults.
 
-### Installation:
-
-#### Linux:
+## Install
 
 ```bash
-git clone github.com/Horryportier/openup@latest 
-cd openup
 go install .
 ```
-### Uninstall:
 
-#### Linux:
+## Run
 
 ```bash
-   rm -rf ~/.openup
-   rm ~/go/bin/openup
+openedup [start-directory]
 ```
 
+## Keyboard shortcuts
 
-## To implement
-- [ ] lunch tmux/kitty session
-- [ ] help for all views
+| Shortcut | Action |
+| --- | --- |
+| `j` / `k`, arrows | Move selection |
+| `enter` / `l` | Open selected entry |
+| `backspace` / `h` | Go back |
+| `ctrl+f` | Global search |
+| `ctrl+h` | History |
+| `ctrl+d` | Favorites |
+| `ctrl+g` | Home/groups |
+| `ctrl+s` | Settings hint |
+| `?` | Help |
+| `q` | Quit |
 
-## keybinds
+## Non-goals
 
-- standard bubbletea list bindings
-- change existing item {C} not working 
-- delete item {D}
-- add item {A}
-- change editor {E}
-
+OpenedUp is not a shell replacement, text editor, full file manager, terminal emulator, Git client, network browser, or plugin host. It is a fast launcher and navigation hub for existing Unix tools.
