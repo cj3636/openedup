@@ -1,6 +1,6 @@
 module github.com/Horryportier/openup
 
-go 1.18
+go 1.25
 
 require (
 	github.com/charmbracelet/bubbles v0.14.0

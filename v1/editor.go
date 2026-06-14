@@ -21,11 +21,11 @@ func EditorChoiceUpdate(m model, msg tea.Msg) (tea.Model, tea.Cmd) {
 	case tea.KeyMsg:
 		switch msg.String() {
 		case "ctrl+c":
-                        m.state = ItemList
+			m.state = ItemList
 			return m, nil
 		case "enter":
 			index, _ := strconv.Atoi(m.Editor.Value())
-                        editor = editors[index]
+			editor = editors[index]
 			data.Editor = editors[index]
 			saveData(data)
 			data = data.GetData()
@@ -51,13 +51,12 @@ func renderEditor(m model) string {
 
 	b.WriteString("Pick your editor of choice.\n")
 	for i := 0; i < len(editors); i++ {
-                if editors[i] == editor {
-                        fmt.Fprintf(&b, accentColor2Text.Render("\n"+fmt.Sprintf("%v",i) +"."+editor+"\n"))
-        }else{
-		fmt.Fprintf(&b, "\n%v.%s\n", i, editors[i])
-        }
+		if editors[i] == editor {
+			fmt.Fprint(&b, accentColor2Text.Render("\n"+fmt.Sprintf("%v", i)+"."+editor+"\n"))
+		} else {
+			fmt.Fprintf(&b, "\n%v.%s\n", i, editors[i])
+		}
 	}
-
 
 	fmt.Fprintf(&b, "\n\n%s\n", m.Editor.View())
 

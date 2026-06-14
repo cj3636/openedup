@@ -1,15 +1,16 @@
 package main
 
 import (
-	"log"
-	app "github.com/Horryportier/openup/v1"
+	"context"
+	"fmt"
+	"os"
+
+	"github.com/Horryportier/openup/internal/app"
 )
 
 func main() {
-        err := app.Start()
-        if err != nil {
-                log.Fatal(err)
-        }
+	if err := app.Run(context.Background(), os.Args[1:]); err != nil {
+		fmt.Fprintln(os.Stderr, err)
+		os.Exit(1)
+	}
 }
-
-
